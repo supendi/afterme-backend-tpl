@@ -1,0 +1,1 @@
+﻿This folder is the Accounts Domain Layer. Contains all the account domain layers: Entities, Services, Repositories

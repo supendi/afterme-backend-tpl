@@ -1,0 +1,1 @@
+﻿This project is Sample App that use the AfterMe.Core
