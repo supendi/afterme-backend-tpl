@@ -1,10 +1,10 @@
-﻿using AfterMe.Core.Accounts.Entities;
+﻿using AfterMe.Core.Domains.Accounts.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AfterMe.Core.Accounts.Infrastructures.SqlServer
+namespace AfterMe.Core.Domains.Accounts.Infrastructures.SqlServer
 {
     /// <summary>
     /// The implementation of the IAccountRepository by using in SQL Server as its persistent storage

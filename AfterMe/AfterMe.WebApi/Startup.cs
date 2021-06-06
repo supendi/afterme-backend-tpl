@@ -1,6 +1,6 @@
-using AfterMe.Core.Accounts;
-using AfterMe.Core.Accounts.Entities;
-using AfterMe.Core.Accounts.Infrastructures.SqlServer;
+using AfterMe.Core.Domains.Accounts;
+using AfterMe.Core.Domains.Accounts.Entities;
+using AfterMe.Core.Domains.Accounts.Infrastructures.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;

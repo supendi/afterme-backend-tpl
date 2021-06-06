@@ -1,5 +1,5 @@
-﻿using AfterMe.Core.Accounts;
-using AfterMe.Core.Accounts.Entities;
+﻿using AfterMe.Core.Domains.Accounts;
+using AfterMe.Core.Domains.Accounts.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

@@ -1,4 +1,4 @@
-﻿using AfterMe.Core.Accounts.Entities;
+﻿using AfterMe.Core.Domains.Accounts.Entities;
 using AfterMe.Core.InternalLib;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 
-namespace AfterMe.Core.Accounts
+namespace AfterMe.Core.Domains.Accounts
 {
     /// <summary>
     /// Represents the contracts of functionalities for working with account storage

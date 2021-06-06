@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 
-namespace AfterMe.Core.Accounts.Entities
+namespace AfterMe.Core.Domains.Accounts.Entities
 {
     /// <summary>
     /// Represents the account entities

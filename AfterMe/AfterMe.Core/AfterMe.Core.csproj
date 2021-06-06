@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Accounts\Infrastructures\MySql\" />
-    <Folder Include="Accounts\Infrastructures\Postgres\" />
+    <Folder Include="Domains\Accounts\Infrastructures\MySql\" />
+    <Folder Include="Domains\Accounts\Infrastructures\Postgres\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

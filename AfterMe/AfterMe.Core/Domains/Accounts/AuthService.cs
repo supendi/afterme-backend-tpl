@@ -1,4 +1,4 @@
-﻿using AfterMe.Core.Accounts.Entities;
+﻿using AfterMe.Core.Domains.Accounts.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AfterMe.Core.Accounts
+namespace AfterMe.Core.Domains.Accounts
 {
     public interface ITokenService
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AfterMe.Core.Accounts.Libs
+namespace AfterMe.Core.Domains.Accounts.Libs
 {
     public class PasswordHasher : IPasswordHasher
     {

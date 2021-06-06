@@ -1,4 +1,4 @@
-﻿namespace AfterMe.Core.Accounts.Entities
+﻿namespace AfterMe.Core.Domains.Accounts.Entities
 {
     public class Token
     {

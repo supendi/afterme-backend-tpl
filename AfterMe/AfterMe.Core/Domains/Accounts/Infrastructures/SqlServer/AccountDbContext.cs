@@ -1,8 +1,8 @@
-﻿using AfterMe.Core.Accounts.Entities;
+﻿using AfterMe.Core.Domains.Accounts.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace AfterMe.Core.Accounts.Infrastructures.SqlServer
+namespace AfterMe.Core.Domains.Accounts.Infrastructures.SqlServer
 {
     public class AccountDbContext : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext<Account>
     {

@@ -1,7 +1,7 @@
-﻿using AfterMe.Core.Accounts.Entities;
+﻿using AfterMe.Core.Domains.Accounts.Entities;
 using System.Collections.Generic;
 
-namespace AfterMe.Core.Accounts.Infrastructures.Inmem
+namespace AfterMe.Core.Domains.Accounts.Infrastructures.Inmem
 {
     /// <summary>
     /// The implementation of the IAccountRepository by using in memory as its storage

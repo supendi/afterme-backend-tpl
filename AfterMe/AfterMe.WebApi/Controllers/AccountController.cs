@@ -1,11 +1,7 @@
-﻿using AfterMe.Core.Accounts;
-using AfterMe.Core.Accounts.Entities;
+﻿using AfterMe.Core.Domains.Accounts;
+using AfterMe.Core.Domains.Accounts.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AfterMe.WebApi.Controllers

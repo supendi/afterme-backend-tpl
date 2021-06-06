@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AfterMe.Core.Accounts;
+using AfterMe.Core.Domains.Accounts;
 
 namespace AfterMe.WebApi.Controllers
 {
