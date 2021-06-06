@@ -1,4 +1,6 @@
-﻿namespace AfterMe.Core.InternalLib
+﻿using System.Threading.Tasks;
+
+namespace AfterMe.Core.InternalLib
 {
     /// <summary>
     /// The generic interface as the base of repository interfaces
@@ -6,9 +8,9 @@
     /// <typeparam name="TEntity"></typeparam>
     public interface IRepository<TEntity>
     {
-        TEntity Add(TEntity entity);
-        TEntity GetById(string entityId); 
-        TEntity Update(TEntity entity); 
+        Task<TEntity> Add(TEntity entity);
+        Task<TEntity> FindById(params object[] keys);
+        Task<TEntity> Update(TEntity entity); 
         void Delete(string entityId);
     }
 }

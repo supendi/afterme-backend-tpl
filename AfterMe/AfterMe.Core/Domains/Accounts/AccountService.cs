@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AfterMe.Core.Domains.Accounts
 {
@@ -13,8 +14,8 @@ namespace AfterMe.Core.Domains.Accounts
     /// </summary>
     public interface IAccountRepository : IRepository<Account>
     {
-        Account GetByEmail(string email);
-        List<Account> List(AccountListRequest listRequest);
+        Task<Account> GetByEmail(string email);
+        Task<List<Account>> List(AccountListRequest listRequest);
     }
 
     /// <summary>

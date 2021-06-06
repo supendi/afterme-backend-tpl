@@ -37,8 +37,9 @@ namespace AfterMe.WebApi.Controllers
                 // or
                 var accountId = identity.FindFirst("userId").Value;
 
-                var registeredAccount = await accountService.FindByIdAsync(accountId);
-                return Ok(registeredAccount);
+                var accountInfo = await accountService.FindByIdAsync(accountId);
+                return Ok(accountInfo);
+
             }
 
             return NotFound();

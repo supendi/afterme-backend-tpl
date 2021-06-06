@@ -1,1 +1,1 @@
-﻿This folder contains the entity or any POCO files
+﻿This folder contains the implementations of Repository (storage) Layers. Such as : SQL server repository, postgres etc.
