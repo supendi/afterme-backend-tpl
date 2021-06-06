@@ -2,6 +2,8 @@
 using AfterMe.Core.Domains.Accounts.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AfterMe.WebApi.Controllers
@@ -23,6 +25,23 @@ namespace AfterMe.WebApi.Controllers
         {
             var registeredAccount = await accountService.CreateAsync(account, account.PasswordHash);
             return Ok(registeredAccount);
+        }
+
+        [HttpGet("me")]
+        public async Task<IActionResult> GetMe()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                IEnumerable<Claim> claims = identity.Claims;
+                // or
+                var accountId = identity.FindFirst("userId").Value;
+
+                var registeredAccount = await accountService.FindByIdAsync(accountId);
+                return Ok(registeredAccount);
+            }
+
+            return NotFound();
         }
     }
 }

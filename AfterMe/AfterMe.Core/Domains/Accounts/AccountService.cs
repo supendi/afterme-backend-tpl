@@ -18,16 +18,6 @@ namespace AfterMe.Core.Domains.Accounts
     }
 
     /// <summary>
-    /// Represents the abstract functionalities of a password hasher
-    /// </summary>
-    public interface IPasswordHasher
-    {
-        string Hash(string password);
-        bool Verify(string password, string hash);
-    }
-
-
-    /// <summary>
     /// Providing the Account business services like registers a new account, gets the account details, lists accounts, updates and deletes.
     /// </summary>
     public class AccountService : UserManager<Account>

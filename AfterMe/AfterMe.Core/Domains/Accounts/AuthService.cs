@@ -1,4 +1,5 @@
 ﻿using AfterMe.Core.Domains.Accounts.Entities;
+using AfterMe.Core.Domains.Accounts.Libs;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -26,8 +27,19 @@ namespace AfterMe.Core.Domains.Accounts
     /// </summary>
     public class AuthService : SignInManager<Account>
     {
-        public AuthService(UserManager<Account> userManager, IHttpContextAccessor contextAccessor, IUserClaimsPrincipalFactory<Account> claimsFactory, IOptions<IdentityOptions> optionsAccessor, ILogger<SignInManager<Account>> logger, IAuthenticationSchemeProvider schemes, IUserConfirmation<Account> confirmation) : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes, confirmation)
+        ISecurityTokenHandler securityTokenHandler;
+        public AuthService(
+            UserManager<Account> userManager,
+            IHttpContextAccessor contextAccessor,
+            IUserClaimsPrincipalFactory<Account>
+            claimsFactory, IOptions<IdentityOptions> optionsAccessor,
+            ILogger<SignInManager<Account>> logger,
+            IAuthenticationSchemeProvider schemes,
+            IUserConfirmation<Account> confirmation,
+            ISecurityTokenHandler securityTokenHandler
+            ) : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes, confirmation)
         {
+            this.securityTokenHandler = securityTokenHandler;
         }
 
         /// <summary>
@@ -50,7 +62,7 @@ namespace AfterMe.Core.Domains.Accounts
                     throw new ApplicationException("Username/Email or password is incorrect.");
                 }
             }
-           
+
             var signInResult = await PasswordSignInAsync(account.UserName, loginRequest.Password, true, false);
             if (!signInResult.Succeeded)
             {
@@ -64,22 +76,12 @@ namespace AfterMe.Core.Domains.Accounts
 
         public Task<TokenInfo> GetTokenInfo(Account account)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var jwtSecret = "rahasiapanjanag banaget deh pokoknya";//Environment.GetEnvironmentVariable("AfterMe_JWTSecret");
-            var key = Encoding.ASCII.GetBytes(jwtSecret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] { new Claim("userId", account.Id) }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            string accessToken = tokenHandler.WriteToken(token);
+            var claimsIdentity = new ClaimsIdentity(new[] { new Claim("userId", account.Id) });
 
             TokenInfo tokenInfo = new TokenInfo
             {
-                AccessToken = accessToken,
-                RefreshToken = Guid.NewGuid().ToString()
+                AccessToken = securityTokenHandler.GetAccessToken(claimsIdentity),
+                RefreshToken = securityTokenHandler.GetRefreshToken()//Guid.NewGuid().ToString()
             };
 
             return Task.FromResult(tokenInfo);
