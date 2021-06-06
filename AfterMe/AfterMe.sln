@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AfterMe.Core", "AfterMe.Core\AfterMe.Core.csproj", "{35AE8EEE-3356-4288-9FAE-75CE3E0534DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfterMe.ConsoleApp", "AfterMe.ConsoleApp\AfterMe.ConsoleApp.csproj", "{AFA49663-E2BE-413E-99C4-409B585AB954}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AfterMe.ConsoleApp", "AfterMe.ConsoleApp\AfterMe.ConsoleApp.csproj", "{AFA49663-E2BE-413E-99C4-409B585AB954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfterMe.WebApi", "AfterMe.WebApi\AfterMe.WebApi.csproj", "{C61DF741-58E1-42ED-A135-226B8CC8276E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AFA49663-E2BE-413E-99C4-409B585AB954}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFA49663-E2BE-413E-99C4-409B585AB954}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFA49663-E2BE-413E-99C4-409B585AB954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C61DF741-58E1-42ED-A135-226B8CC8276E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C61DF741-58E1-42ED-A135-226B8CC8276E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C61DF741-58E1-42ED-A135-226B8CC8276E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C61DF741-58E1-42ED-A135-226B8CC8276E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,9 +15,9 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
             this.inMemoryAccountsStorage = new List<Account>();
         }
 
-        private int NewID()
+        private string NewID()
         {
-            return this.inMemoryAccountsStorage.Count + 1;
+            return (this.inMemoryAccountsStorage.Count + 1).ToString();
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
         /// Deletes an existing account by its id
         /// </summary>
         /// <param name="accountId"></param>
-        public void Delete(int accountId)
+        public void Delete(string accountId)
         {
             foreach (Account account in inMemoryAccountsStorage)
             {
@@ -70,7 +70,7 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public Account GetById(int accountId)
+        public Account GetById(string accountId)
         {
             foreach (Account account in inMemoryAccountsStorage)
             {

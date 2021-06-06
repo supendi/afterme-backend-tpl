@@ -7,8 +7,8 @@
     public interface IRepository<TEntity>
     {
         TEntity Add(TEntity entity);
-        TEntity GetById(int entityId); 
+        TEntity GetById(string entityId); 
         TEntity Update(TEntity entity); 
-        void Delete(int entityId);
+        void Delete(string entityId);
     }
 }

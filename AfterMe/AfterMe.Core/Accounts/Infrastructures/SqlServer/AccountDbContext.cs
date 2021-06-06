@@ -4,10 +4,10 @@ using System;
 
 namespace AfterMe.Core.Accounts.Infrastructures.SqlServer
 {
-    public class AccountDbContext : DbContext
+    public class AccountDbContext : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext<Account>
     {
         public DbSet<Account> Accounts { get; set; }
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Get the connection string from system envars instead of from a config file

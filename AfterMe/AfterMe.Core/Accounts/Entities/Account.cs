@@ -1,16 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace AfterMe.Core.Accounts.Entities
 {
     /// <summary>
     /// Represents the account entities
     /// </summary>
-    public class Account
+    public class Account : IdentityUser
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string Name { get; set; } 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public DateTime DeletedAt { get; set; }

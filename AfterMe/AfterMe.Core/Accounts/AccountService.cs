@@ -1,5 +1,8 @@
 ﻿using AfterMe.Core.Accounts.Entities;
 using AfterMe.Core.InternalLib;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 
@@ -27,97 +30,11 @@ namespace AfterMe.Core.Accounts
     /// <summary>
     /// Providing the Account business services like registers a new account, gets the account details, lists accounts, updates and deletes.
     /// </summary>
-    public class AccountService
+    public class AccountService : UserManager<Account>
     {
-        IAccountRepository accountRepository;
-        IPasswordHasher passwordHasher;
-
-        public AccountService(IAccountRepository accountRepository, IPasswordHasher passwordHasher)
+        public AccountService(IUserStore<Account> store, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<Account> passwordHasher, IEnumerable<IUserValidator<Account>> userValidators, IEnumerable<IPasswordValidator<Account>> passwordValidators, ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors, IServiceProvider services, ILogger<UserManager<Account>> logger)
+            : base(store, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
         {
-            this.accountRepository = accountRepository;
-            this.passwordHasher = passwordHasher;
-        }
-
-        /// <summary>
-        /// Registers a new account
-        /// </summary>
-        /// <param name="registrant"></param>
-        /// <returns></returns>
-        public Account Register(Registrant registrant)
-        {
-            if (registrant is null)
-            {
-                throw new ArgumentNullException(nameof(registrant));
-            }
-
-            bool emailIsRegistered = this.accountRepository.GetByEmail(registrant.Email) != null;
-            if (emailIsRegistered)
-            {
-                throw new ApplicationException(string.Format("The email '{0}' is already registerd. Try a new one", registrant.Email));
-            }
-
-            //We can use Automapper here
-            Account newAccount = new Account()
-            {
-                Name = registrant.Name,
-                Email = registrant.Email,
-                Password = passwordHasher.Hash(registrant.Password),
-                CreatedAt = DateTime.Now,
-            };
-
-            Account registeredAccount = accountRepository.Add(newAccount);
-            return registeredAccount;
-        }
-
-        /// <summary>
-        /// Updates an existing account
-        /// </summary>
-        /// <param name="account"></param>
-        /// <returns></returns>
-        public Account Update(Account account)
-        {
-            if (account is null)
-            {
-                throw new ArgumentNullException(nameof(account));
-            }
-
-            bool accountIsExist = this.accountRepository.GetById(account.Id) != null;
-            if (!accountIsExist)
-            {
-                throw new ApplicationException(string.Format("The account id '{0}' is not found.", account.Id));
-            }
-
-            Account updatedAccount = accountRepository.Update(account);
-            return updatedAccount;
-        }
-
-        /// <summary>
-        /// Gets an account by its id
-        /// </summary>
-        /// <param name="accountId"></param>
-        /// <returns></returns>
-        public Account Get(int accountId)
-        {
-            return accountRepository.GetById(accountId);
-        }
-
-        /// <summary>
-        /// Returns a list of accounts by the specified list filters
-        /// </summary>
-        /// <param name="listRequest"></param>
-        /// <returns></returns>
-        public List<Account> List(AccountListRequest listRequest)
-        {
-            return accountRepository.List(listRequest);
-        }
-
-        /// <summary>
-        /// Deletes an existing account by account id
-        /// </summary>
-        /// <param name="accountId"></param>
-        public void Delete(int accountId)
-        {
-            accountRepository.Delete(accountId);
         }
     }
 }
