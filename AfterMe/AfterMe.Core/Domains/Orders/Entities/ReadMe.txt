@@ -1,0 +1,1 @@
+﻿This folder contains the entity or any POCO files
