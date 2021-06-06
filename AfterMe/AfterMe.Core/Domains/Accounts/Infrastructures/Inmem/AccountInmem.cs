@@ -1,7 +1,8 @@
-﻿using AfterMe.Core.Accounts.Entities;
+﻿using AfterMe.Core.Domains.Accounts.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace AfterMe.Core.Accounts.Infrastructures.Inmem
+namespace AfterMe.Core.Domains.Accounts.Infrastructures.Inmem
 {
     /// <summary>
     /// The implementation of the IAccountRepository by using in memory as its storage
@@ -15,9 +16,9 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
             this.inMemoryAccountsStorage = new List<Account>();
         }
 
-        private int NewID()
+        private string NewID()
         {
-            return this.inMemoryAccountsStorage.Count + 1;
+            return (this.inMemoryAccountsStorage.Count + 1).ToString();
         }
 
         /// <summary>
@@ -25,18 +26,18 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public Account Add(Account account)
+        public Task<Account> Add(Account account)
         {
             account.Id = NewID();
             inMemoryAccountsStorage.Add(account);
-            return account;
+            return Task.FromResult(account);
         }
 
         /// <summary>
         /// Deletes an existing account by its id
         /// </summary>
         /// <param name="accountId"></param>
-        public void Delete(int accountId)
+        public void Delete(string accountId)
         {
             foreach (Account account in inMemoryAccountsStorage)
             {
@@ -53,13 +54,13 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public Account GetByEmail(string email)
+        public Task<Account> GetByEmail(string email)
         {
             foreach (Account account in inMemoryAccountsStorage)
             {
                 if (account.Email == email)
                 {
-                    return account;
+                    return Task.FromResult(account);
                 }
             }
             return null;
@@ -70,11 +71,11 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public Account GetById(int accountId)
+        public Task<Account> FindById(params object[] keys)
         {
             foreach (Account account in inMemoryAccountsStorage)
             {
-                if (account.Id == accountId)
+                if (account.Id == keys[0].ToString())
                 {
                     inMemoryAccountsStorage.Remove(account);
                     break;
@@ -88,7 +89,7 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
         /// </summary>
         /// <param name="listRequest"></param>
         /// <returns></returns>
-        public List<Account> List(AccountListRequest listRequest)
+        public Task<List<Account>> List(AccountListRequest listRequest)
         {
             List<Account> accounts = new List<Account>();
             foreach (Account account in inMemoryAccountsStorage)
@@ -98,7 +99,7 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
                     accounts.Add(account);
                 }
             }
-            return accounts;
+            return Task.FromResult(accounts);
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace AfterMe.Core.Accounts.Infrastructures.Inmem
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public Account Update(Account account)
+        public Task<Account> Update(Account account)
         {
             Delete(account.Id);
             return Add(account);

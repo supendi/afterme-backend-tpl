@@ -2,8 +2,11 @@
 /AfterMe/AfterMe.Core/bin
 /AfterMe/AfterMe.Core/obj
 /AfterMe/AfterMe.Core/AfterMe.Core.csproj.user
-
-/AfterMe/.vs
+ 
 /AfterMe/AfterMe.ConsoleApp/bin
 /AfterMe/AfterMe.ConsoleApp/obj
 /AfterMe/AfterMe.ConsoleApp/AfterMe.ConsoleApp.csproj.user
+
+/AfterMe/AfterMe.WebApi/bin
+/AfterMe/AfterMe.WebApi/obj
+/AfterMe/AfterMe.WebApi/AfterMe.WebApi.csproj.user
